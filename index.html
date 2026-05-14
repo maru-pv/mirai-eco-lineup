@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蓄電池リース ラインナップ｜ミライエコ＋</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+    background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 50%, #0d2137 100%);
+    min-height: 100vh;
+    color: #fff;
+  }
+
+  header {
+    background: linear-gradient(90deg, #f97316, #fb923c);
+    padding: 16px 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(249,115,22,0.5);
+  }
+
+  header .logo-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: 0.05em;
+  }
+
+  header p {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.9);
+    margin-top: 4px;
+  }
+
+  .badge-sbi {
+    background: #fff;
+    color: #1a3a5c;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 16px 40px;
+  }
+
+  .updated {
+    text-align: right;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 16px;
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .filter-btn {
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 600;
+  }
+
+  .filter-btn.active, .filter-btn:hover {
+    background: #f97316;
+    border-color: #f97316;
+    box-shadow: 0 0 12px rgba(249,115,22,0.5);
+  }
+
+  .maker-section { margin-bottom: 28px; }
+
+  .maker-label {
+    display: inline-block;
+    background: linear-gradient(90deg, #1e40af, #3b82f6);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 4px 4px 0 0;
+    letter-spacing: 0.05em;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 0 8px 8px 8px;
+    padding: 12px;
+  }
+
+  .card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.04));
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 14px;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+
+  .card.sochiku {
+    border-color: rgba(249,115,22,0.5);
+    background: linear-gradient(145deg, rgba(249,115,22,0.12), rgba(255,255,255,0.04));
+  }
+
+  .sochiku-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: linear-gradient(90deg, #f97316, #fb923c);
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .card-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #93c5fd;
+    margin-bottom: 4px;
+    padding-right: 60px;
+  }
+
+  .card-spec {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .price-area {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 8px;
+  }
+
+  .price-label {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 2px;
+  }
+
+  .price-main {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #fbbf24;
+    line-height: 1;
+  }
+
+  .price-main span {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.6);
+    margin-left: 2px;
+  }
+
+  .price-tax {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.45);
+    margin-top: 2px;
+  }
+
+  .note {
+    background: rgba(255,255,255,0.06);
+    border-left: 3px solid #f97316;
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    margin-top: 8px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .loading {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 480px) {
+    header h1 { font-size: 1.2rem; }
+    .cards { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .price-main { font-size: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-area">
+    <span class="badge-sbi">SBI 新生銀行グループ</span>
+    <h1>ミライエコ＋ 蓄電池リース</h1>
+  </div>
+  <p>最新ラインナップ・リース料金一覧</p>
+</header>
+
+<div class="container">
+  <div class="updated" id="updated"></div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterCards('all')">すべて</button>
+    <button class="filter-btn" onclick="filterCards('sochiku')">🔶 創蓄連携割引対象</button>
+  </div>
+
+  <div id="lineup"></div>
+
+  <div class="note">
+    ※リース期間：10年間｜リース満了後は無償譲渡（返却不要）<br>
+    ※創蓄連携割引は「ミライエコ＋太陽光リース」との同時契約が条件です<br>
+    ※設置条件によっては初期費用（追加工事費）が必要な場合があります<br>
+    ※地震・噴火・津波・戦争・塩害による損害は保証対象外
+  </div>
+</div>
+
+<footer>
+  株式会社メイキングエナジー｜TEL: 0857-88-9731<br>
+  鳥取支店：鳥取市吉方温泉4-719 MORIビル2F｜福岡支店：久留米市本町2-23 豊国産業ビル2F
+</footer>
+
+<script>
+  let allProducts = [];
+  let currentFilter = 'all';
+
+  fetch('lineup.json?t=' + Date.now())
+    .then(r => r.json())
+    .then(data => {
+      allProducts = data.products;
+      document.getElementById('updated').textContent = '最終更新：' + data.updated;
+      renderCards(allProducts);
+    })
+    .catch(() => {
+      document.getElementById('lineup').innerHTML =
+        '<div class="loading">データの読み込みに失敗しました。しばらくしてから再度お試しください。</div>';
+    });
+
+  function filterCards(type) {
+    currentFilter = type;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    const filtered = type === 'sochiku'
+      ? allProducts.filter(p => p.sochiku)
+      : allProducts;
+    renderCards(filtered);
+  }
+
+  function renderCards(products) {
+    const container = document.getElementById('lineup');
+    if (!products.length) {
+      container.innerHTML = '<div class="loading">該当する商品がありません</div>';
+      return;
+    }
+
+    const grouped = {};
+    products.forEach(p => {
+      if (!grouped[p.maker]) grouped[p.maker] = [];
+      grouped[p.maker].push(p);
+    });
+
+    container.innerHTML = Object.entries(grouped).map(([maker, items]) => `
+      <div class="maker-section">
+        <div class="maker-label">${maker}</div>
+        <div class="cards">
+          ${items.map(p => `
+            <div class="card ${p.sochiku ? 'sochiku' : ''}">
+              ${p.sochiku ? '<div class="sochiku-badge">🔶 創蓄連携割引</div>' : ''}
+              <div class="card-name">${p.name}</div>
+              <div class="card-spec">${p.spec}</div>
+              <div class="price-area">
+                <div class="price-label">月々リース料（税抜）</div>
+                <div class="price-main">${p.price_ex.toLocaleString()}<span>円/月</span></div>
+                <div class="price-tax">税込 ${p.price_in.toLocaleString()}円/月</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+  }
+</script>
+</body>
+</html>
