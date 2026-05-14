@@ -1,0 +1,15 @@
+{
+  "features": {
+    "compare_mode": true,
+    "catalog_link": true,
+    "filter_maker": true,
+    "filter_type": true,
+    "filter_load": true,
+    "filter_sochiku": true,
+    "show_tax_price": true
+  },
+  "display": {
+    "page_title": "ミライエコ＋ 蓄電池リース",
+    "note_text": "※リース期間：10年間｜リース満了後は無償譲渡（返却不要）\n※創蓄連携割引は「ミライエコ＋太陽光リース」との同時契約が条件です\n※設置条件によっては初期費用（追加工事費）が必要な場合があります\n※地震・噴火・津波・戦争・塩害による損害は保証対象外"
+  }
+}
