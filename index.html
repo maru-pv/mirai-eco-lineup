@@ -9,217 +9,343 @@
 
   body {
     font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
-    background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 50%, #0d2137 100%);
+    background: #f0f4f8;
     min-height: 100vh;
-    color: #fff;
+    color: #1a2a3a;
   }
 
   header {
-    background: linear-gradient(90deg, #f97316, #fb923c);
-    padding: 16px 20px;
+    background: linear-gradient(90deg, #1e40af, #2563eb);
+    padding: 18px 24px;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(249,115,22,0.5);
+    box-shadow: 0 4px 16px rgba(30,64,175,0.3);
   }
 
   header .logo-area {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: wrap;
   }
 
   header h1 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 900;
     color: #fff;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     letter-spacing: 0.05em;
   }
 
   header p {
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.9);
-    margin-top: 4px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.85);
+    margin-top: 6px;
   }
 
   .badge-sbi {
     background: #fff;
-    color: #1a3a5c;
-    font-size: 0.65rem;
+    color: #1e40af;
+    font-size: 0.7rem;
     font-weight: 700;
-    padding: 3px 8px;
+    padding: 3px 10px;
     border-radius: 4px;
   }
 
   .container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 24px 16px 40px;
+    padding: 24px 20px 60px;
   }
 
-  .updated {
-    text-align: right;
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.5);
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
     margin-bottom: 16px;
   }
 
-  .filter-bar {
+  .updated {
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+
+  .result-count {
+    font-size: 0.8rem;
+    color: #64748b;
+  }
+
+  .filter-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .filter-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .filter-row:last-child { margin-bottom: 0; }
+
+  .filter-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #475569;
+    width: 80px;
+    flex-shrink: 0;
+  }
+
+  .filter-btns {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    margin-bottom: 20px;
   }
 
   .filter-btn {
-    padding: 6px 16px;
+    padding: 5px 14px;
     border-radius: 20px;
-    border: 2px solid rgba(255,255,255,0.3);
-    background: rgba(255,255,255,0.08);
-    color: #fff;
+    border: 2px solid #cbd5e1;
+    background: #fff;
+    color: #475569;
     font-size: 0.8rem;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.15s;
     font-weight: 600;
+    user-select: none;
   }
 
-  .filter-btn.active, .filter-btn:hover {
+  .filter-btn:hover {
+    border-color: #2563eb;
+    color: #2563eb;
+  }
+
+  .filter-btn.active {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.3);
+  }
+
+  .filter-btn.orange.active {
     background: #f97316;
     border-color: #f97316;
-    box-shadow: 0 0 12px rgba(249,115,22,0.5);
+    box-shadow: 0 2px 8px rgba(249,115,22,0.3);
   }
 
-  .maker-section { margin-bottom: 28px; }
+  .reset-btn {
+    margin-left: auto;
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 2px solid #e2e8f0;
+    background: #f8fafc;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.15s;
+  }
+
+  .reset-btn:hover {
+    border-color: #94a3b8;
+    color: #475569;
+  }
+
+  .maker-section { margin-bottom: 32px; }
 
   .maker-label {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     background: linear-gradient(90deg, #1e40af, #3b82f6);
     color: #fff;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    padding: 4px 14px;
-    border-radius: 4px 4px 0 0;
-    letter-spacing: 0.05em;
+    padding: 6px 16px;
+    border-radius: 6px 6px 0 0;
+    letter-spacing: 0.03em;
   }
 
   .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 10px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 0 8px 8px 8px;
-    padding: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    background: #fff;
+    border: 2px solid #e2e8f0;
+    border-radius: 0 10px 10px 10px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   }
 
   .card {
-    background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.04));
-    border: 1px solid rgba(255,255,255,0.15);
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
     border-radius: 10px;
     padding: 14px;
     position: relative;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.15s, box-shadow 0.15s;
   }
 
   .card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
   }
 
   .card.sochiku {
-    border-color: rgba(249,115,22,0.5);
-    background: linear-gradient(145deg, rgba(249,115,22,0.12), rgba(255,255,255,0.04));
+    border-color: #fed7aa;
+    background: #fff7ed;
   }
 
   .sochiku-badge {
-    position: absolute;
-    top: 8px;
-    right: 8px;
+    display: inline-block;
     background: linear-gradient(90deg, #f97316, #fb923c);
     color: #fff;
     font-size: 0.6rem;
     font-weight: 700;
-    padding: 2px 7px;
+    padding: 2px 8px;
     border-radius: 10px;
+    margin-bottom: 6px;
     white-space: nowrap;
   }
 
-  .card-name {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #93c5fd;
-    margin-bottom: 4px;
-    padding-right: 60px;
+  .type-badges {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
   }
 
-  .card-spec {
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.65);
+  .type-badge {
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+
+  .type-badge.hybrid {
+    background: #dbeafe;
+    color: #1d4ed8;
+  }
+
+  .type-badge.single {
+    background: #f1f5f9;
+    color: #475569;
+  }
+
+  .type-badge.v2h {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  .type-badge.load {
+    background: #fef3c7;
+    color: #92400e;
+  }
+
+  .card-name-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .card-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: 2px;
+    line-height: 1.3;
+  }
+
+  .card-name.has-link:hover {
+    text-decoration: underline;
+    color: #2563eb;
+  }
+
+  .card-name.no-link {
+    color: #1e293b;
+    cursor: default;
+  }
+
+  .card-capacity {
+    font-size: 0.8rem;
+    color: #64748b;
     margin-bottom: 10px;
-    line-height: 1.4;
   }
 
   .price-area {
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid #e2e8f0;
     padding-top: 8px;
+    margin-top: auto;
   }
 
   .price-label {
     font-size: 0.65rem;
-    color: rgba(255,255,255,0.5);
+    color: #94a3b8;
     margin-bottom: 2px;
   }
 
   .price-main {
     font-size: 1.4rem;
     font-weight: 900;
-    color: #fbbf24;
+    color: #f97316;
     line-height: 1;
   }
 
   .price-main span {
     font-size: 0.75rem;
     font-weight: 400;
-    color: rgba(255,255,255,0.6);
+    color: #94a3b8;
     margin-left: 2px;
   }
 
   .price-tax {
     font-size: 0.7rem;
-    color: rgba(255,255,255,0.45);
+    color: #94a3b8;
     margin-top: 2px;
   }
 
+  .no-result {
+    text-align: center;
+    padding: 60px 20px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    background: #fff;
+    border-radius: 12px;
+  }
+
   .note {
-    background: rgba(255,255,255,0.06);
-    border-left: 3px solid #f97316;
+    background: #fff;
+    border-left: 4px solid #f97316;
     border-radius: 4px;
-    padding: 12px 16px;
+    padding: 14px 18px;
     font-size: 0.75rem;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.7;
+    color: #64748b;
+    line-height: 1.8;
     margin-top: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   }
 
   footer {
     text-align: center;
-    padding: 20px;
-    font-size: 0.7rem;
-    color: rgba(255,255,255,0.3);
+    padding: 24px 20px;
+    font-size: 0.72rem;
+    color: #94a3b8;
+    border-top: 1px solid #e2e8f0;
+    background: #fff;
+    margin-top: 40px;
   }
 
-  .loading {
-    text-align: center;
-    padding: 60px 20px;
-    color: rgba(255,255,255,0.5);
-    font-size: 0.9rem;
-  }
-
-  @media (max-width: 480px) {
+  @media (max-width: 600px) {
     header h1 { font-size: 1.2rem; }
     .cards { grid-template-columns: 1fr 1fr; gap: 8px; }
-    .price-main { font-size: 1.2rem; }
+    .price-main { font-size: 1.15rem; }
+    .filter-label { width: 60px; font-size: 0.7rem; }
   }
 </style>
 </head>
@@ -234,11 +360,35 @@
 </header>
 
 <div class="container">
-  <div class="updated" id="updated"></div>
 
-  <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterCards('all')">すべて</button>
-    <button class="filter-btn" onclick="filterCards('sochiku')">🔶 創蓄連携割引対象</button>
+  <div class="top-bar">
+    <div class="updated" id="updated"></div>
+    <div class="result-count" id="result-count"></div>
+  </div>
+
+  <div class="filter-section">
+    <div class="filter-row">
+      <div class="filter-label">タイプ</div>
+      <div class="filter-btns" id="filter-type">
+        <button class="filter-btn" data-group="type" data-val="ハイブリッド" onclick="toggleFilter(this)">ハイブリッド</button>
+        <button class="filter-btn" data-group="type" data-val="単機能" onclick="toggleFilter(this)">単機能</button>
+        <button class="filter-btn" data-group="type" data-val="V2H" onclick="toggleFilter(this)">V2H</button>
+      </div>
+    </div>
+    <div class="filter-row">
+      <div class="filter-label">負荷タイプ</div>
+      <div class="filter-btns" id="filter-load">
+        <button class="filter-btn" data-group="load" data-val="全負荷" onclick="toggleFilter(this)">全負荷</button>
+        <button class="filter-btn" data-group="load" data-val="特定負荷" onclick="toggleFilter(this)">特定負荷</button>
+      </div>
+    </div>
+    <div class="filter-row">
+      <div class="filter-label">割引</div>
+      <div class="filter-btns">
+        <button class="filter-btn orange" data-group="sochiku" data-val="true" onclick="toggleFilter(this)">🔶 創蓄連携割引対象のみ</button>
+      </div>
+      <button class="reset-btn" onclick="resetFilters()">絞り込みをリセット</button>
+    </div>
   </div>
 
   <div id="lineup"></div>
@@ -258,7 +408,7 @@
 
 <script>
   let allProducts = [];
-  let currentFilter = 'all';
+  const activeFilters = { type: [], load: [], sochiku: [] };
 
   fetch('lineup.json?t=' + Date.now())
     .then(r => r.json())
@@ -269,23 +419,46 @@
     })
     .catch(() => {
       document.getElementById('lineup').innerHTML =
-        '<div class="loading">データの読み込みに失敗しました。しばらくしてから再度お試しください。</div>';
+        '<div class="no-result">データの読み込みに失敗しました。しばらくしてから再度お試しください。</div>';
     });
 
-  function filterCards(type) {
-    currentFilter = type;
+  function toggleFilter(btn) {
+    const group = btn.dataset.group;
+    const val = btn.dataset.val;
+    const idx = activeFilters[group].indexOf(val);
+    if (idx === -1) {
+      activeFilters[group].push(val);
+      btn.classList.add('active');
+    } else {
+      activeFilters[group].splice(idx, 1);
+      btn.classList.remove('active');
+    }
+    applyFilters();
+  }
+
+  function resetFilters() {
+    Object.keys(activeFilters).forEach(k => activeFilters[k] = []);
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
-    const filtered = type === 'sochiku'
-      ? allProducts.filter(p => p.sochiku)
-      : allProducts;
+    renderCards(allProducts);
+  }
+
+  function applyFilters() {
+    let filtered = allProducts;
+    if (activeFilters.type.length)
+      filtered = filtered.filter(p => activeFilters.type.includes(p.type));
+    if (activeFilters.load.length)
+      filtered = filtered.filter(p => activeFilters.load.includes(p.load));
+    if (activeFilters.sochiku.length)
+      filtered = filtered.filter(p => p.sochiku === true);
     renderCards(filtered);
   }
 
   function renderCards(products) {
     const container = document.getElementById('lineup');
+    document.getElementById('result-count').textContent = products.length + '件表示中';
+
     if (!products.length) {
-      container.innerHTML = '<div class="loading">該当する商品がありません</div>';
+      container.innerHTML = '<div class="no-result">条件に合う製品が見つかりませんでした。絞り込みをリセットしてお試しください。</div>';
       return;
     }
 
@@ -299,18 +472,32 @@
       <div class="maker-section">
         <div class="maker-label">${maker}</div>
         <div class="cards">
-          ${items.map(p => `
-            <div class="card ${p.sochiku ? 'sochiku' : ''}">
-              ${p.sochiku ? '<div class="sochiku-badge">🔶 創蓄連携割引</div>' : ''}
-              <div class="card-name">${p.name}</div>
-              <div class="card-spec">${p.spec}</div>
-              <div class="price-area">
-                <div class="price-label">月々リース料（税抜）</div>
-                <div class="price-main">${p.price_ex.toLocaleString()}<span>円/月</span></div>
-                <div class="price-tax">税込 ${p.price_in.toLocaleString()}円/月</div>
+          ${items.map(p => {
+            const typeBadge = p.type === 'ハイブリッド'
+              ? '<span class="type-badge hybrid">ハイブリッド</span>'
+              : p.type === 'V2H'
+              ? '<span class="type-badge v2h">V2H</span>'
+              : '<span class="type-badge single">単機能</span>';
+            const loadBadge = p.load !== 'なし'
+              ? `<span class="type-badge load">${p.load}</span>`
+              : '';
+            const nameEl = p.url
+              ? `<a href="${p.url}" target="_blank" rel="noopener" class="card-name-link"><div class="card-name has-link">📄 ${p.name}</div></a>`
+              : `<div class="card-name no-link">${p.name}</div>`;
+            return `
+              <div class="card ${p.sochiku ? 'sochiku' : ''}">
+                ${p.sochiku ? '<div class="sochiku-badge">🔶 創蓄連携割引対象</div>' : ''}
+                <div class="type-badges">${typeBadge}${loadBadge}</div>
+                ${nameEl}
+                <div class="card-capacity">${p.capacity}</div>
+                <div class="price-area">
+                  <div class="price-label">月々リース料（税抜）</div>
+                  <div class="price-main">${p.price_ex.toLocaleString()}<span>円/月</span></div>
+                  <div class="price-tax">税込 ${p.price_in.toLocaleString()}円/月</div>
+                </div>
               </div>
-            </div>
-          `).join('')}
+            `;
+          }).join('')}
         </div>
       </div>
     `).join('');
