@@ -1,0 +1,31 @@
+{
+  "updated": "2025-05-14",
+  "products": [
+    { "maker": "ハンファジャパン", "name": "QREADY蓄電池", "spec": "創蓄 HYB全負荷 7.7kWh", "price_ex": 13100, "price_in": 14410, "sochiku": true },
+    { "maker": "ハンファジャパン", "name": "QREADY蓄電池", "spec": "創蓄 HYB全負荷 9.7kWh", "price_ex": 14100, "price_in": 15510, "sochiku": true },
+    { "maker": "長州産業", "name": "スマートPV multi", "spec": "単 特定負荷 6.3kWh", "price_ex": 15000, "price_in": 16500, "sochiku": false },
+    { "maker": "長州産業", "name": "スマートPV multi", "spec": "創蓄 HYB特定負荷 6.3kWh", "price_ex": 16100, "price_in": 17710, "sochiku": true },
+    { "maker": "長州産業", "name": "スマートPV multi", "spec": "単 6.5kWh", "price_ex": 14600, "price_in": 16060, "sochiku": false },
+    { "maker": "長州産業", "name": "スマートPV multi", "spec": "創蓄 HYB特定負荷 6.5kWh", "price_ex": 15000, "price_in": 16500, "sochiku": true },
+    { "maker": "長州産業", "name": "スマートPV multi", "spec": "単 特定負荷 9.8kWh", "price_ex": 16000, "price_in": 17600, "sochiku": false },
+    { "maker": "長州産業", "name": "スマートPV multi", "spec": "創蓄 HYB特定負荷 9.8kWh", "price_ex": 17200, "price_in": 18920, "sochiku": true },
+    { "maker": "長州産業", "name": "スマートPV multi", "spec": "単 特定負荷 12.7kWh", "price_ex": 16700, "price_in": 18370, "sochiku": false },
+    { "maker": "長州産業", "name": "スマートPV multi", "spec": "創蓄 HYB特定負荷 12.7kWh", "price_ex": 18100, "price_in": 19910, "sochiku": true },
+    { "maker": "長州産業", "name": "スマートPV multi", "spec": "単 特定負荷 16.4kWh", "price_ex": 21800, "price_in": 23980, "sochiku": false },
+    { "maker": "長州産業", "name": "スマートPV multi", "spec": "創蓄 HYB特定負荷 16.4kWh", "price_ex": 23800, "price_in": 26180, "sochiku": true },
+    { "maker": "住友電気工業", "name": "POWER DEPO H", "spec": "創蓄 HYB全負荷 12.8kWh", "price_ex": 19100, "price_in": 21010, "sochiku": true },
+    { "maker": "ニチコン", "name": "U4M1", "spec": "単 全負荷 11.1kWh", "price_ex": 18700, "price_in": 20570, "sochiku": false },
+    { "maker": "ニチコン", "name": "U4X1", "spec": "単 全負荷 16.6kWh", "price_ex": 22300, "price_in": 24530, "sochiku": false },
+    { "maker": "ニチコン", "name": "トライブリッドT3", "spec": "創蓄 4.9kWh", "price_ex": 14900, "price_in": 16390, "sochiku": true },
+    { "maker": "ニチコン", "name": "トライブリッドT3", "spec": "創蓄 7.4kWh", "price_ex": 16800, "price_in": 18480, "sochiku": true },
+    { "maker": "ニチコン", "name": "トライブリッドT3", "spec": "創蓄 9.9kWh", "price_ex": 18500, "price_in": 20350, "sochiku": true },
+    { "maker": "ニチコン", "name": "新型EVパワーステーション", "spec": "V2H", "price_ex": 18700, "price_in": 20570, "sochiku": false },
+    { "maker": "京セラ", "name": "Enerezza", "spec": "単 特定負荷 5.5kWh", "price_ex": 13800, "price_in": 15180, "sochiku": false },
+    { "maker": "京セラ", "name": "Enerezza", "spec": "単 特定負荷 11.0kWh", "price_ex": 17800, "price_in": 19580, "sochiku": false },
+    { "maker": "京セラ", "name": "Enerezza", "spec": "単 特定負荷 16.5kWh", "price_ex": 21700, "price_in": 23870, "sochiku": false },
+    { "maker": "Tesla", "name": "POWERWALL2", "spec": "単 全負荷 13.5kWh", "price_ex": 17100, "price_in": 18810, "sochiku": false },
+    { "maker": "ネクストエナジー", "name": "Dulight", "spec": "2台用 積雪60cm以下 PV10枚搭載", "price_ex": 23600, "price_in": 25960, "sochiku": false },
+    { "maker": "ネクストエナジー", "name": "Dulight", "spec": "2台用 積雪99cm以下 PV10枚搭載", "price_ex": 24300, "price_in": 26730, "sochiku": false },
+    { "maker": "ネクストエナジー", "name": "Dulight", "spec": "2台用 積雪150cm以下 PV10枚搭載", "price_ex": 24800, "price_in": 27280, "sochiku": false }
+  ]
+}
