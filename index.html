@@ -32,25 +32,17 @@
   .updated { font-size: 0.72rem; color: #64748b; }
   .result-count { font-size: 0.72rem; color: #64748b; }
 
-  /* フィルター */
   .filter-section {
-    background: #fff;
-    border-radius: 10px;
-    padding: 12px 16px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    background: #fff; border-radius: 10px; padding: 12px 16px;
+    margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   }
   .filter-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
   .filter-row:last-child { margin-bottom: 0; }
   .filter-label { font-size: 0.7rem; font-weight: 700; color: #475569; width: 72px; flex-shrink: 0; }
 
-  /* メーカー横スクロール */
   .filter-scroll-wrap {
-    flex: 1;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: 2px;
+    flex: 1; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; padding-bottom: 2px;
   }
   .filter-scroll-wrap::-webkit-scrollbar { display: none; }
   .filter-scroll-inner { display: flex; gap: 6px; width: max-content; }
@@ -58,18 +50,10 @@
   .filter-btns { display: flex; gap: 6px; flex-wrap: wrap; flex: 1; }
 
   .filter-btn {
-    padding: 4px 12px;
-    border-radius: 16px;
-    border: 2px solid #cbd5e1;
-    background: #fff;
-    color: #475569;
-    font-size: 0.75rem;
-    cursor: pointer;
-    transition: all 0.15s;
-    font-weight: 600;
-    user-select: none;
-    white-space: nowrap;
-    flex-shrink: 0;
+    padding: 4px 12px; border-radius: 16px; border: 2px solid #cbd5e1;
+    background: #fff; color: #475569; font-size: 0.75rem; cursor: pointer;
+    transition: all 0.15s; font-weight: 600; user-select: none;
+    white-space: nowrap; flex-shrink: 0;
   }
   .filter-btn:hover { border-color: #2563eb; color: #2563eb; }
   .filter-btn.active { background: #2563eb; border-color: #2563eb; color: #fff; box-shadow: 0 2px 6px rgba(37,99,235,0.3); }
@@ -82,7 +66,6 @@
   }
   .reset-btn:hover { border-color: #94a3b8; color: #475569; }
 
-  /* カード */
   .maker-section { margin-bottom: 20px; }
   .maker-label {
     display: inline-flex; align-items: center;
@@ -91,26 +74,16 @@
     padding: 5px 14px; border-radius: 6px 6px 0 0;
   }
   .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 8px;
-    background: #fff;
-    border: 2px solid #e2e8f0;
-    border-radius: 0 10px 10px 10px;
-    padding: 10px;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px; background: #fff; border: 2px solid #e2e8f0;
+    border-radius: 0 10px 10px 10px; padding: 10px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.04);
   }
 
   .card {
-    background: #f8fafc;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    transition: transform 0.15s, box-shadow 0.15s;
-    position: relative;
+    background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px;
+    padding: 10px; display: flex; flex-direction: column; gap: 4px;
+    transition: transform 0.15s, box-shadow 0.15s; position: relative;
   }
   .card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.1); }
   .card.sochiku { border-color: #fed7aa; background: #fff7ed; }
@@ -146,7 +119,6 @@
   }
   .catalog-btn:hover { opacity: 0.85; }
 
-  /* 比較ボタン */
   .compare-toggle-btn {
     display: block; margin-top: 6px; padding: 5px 0;
     background: #f1f5f9; border: 2px solid #cbd5e1;
@@ -157,104 +129,69 @@
   .compare-toggle-btn:hover { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
   .compare-toggle-btn.added { background: #eff6ff; border-color: #2563eb; color: #2563eb; }
 
-  /* 比較バー（画面下部固定） */
   #compare-bar {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: #1e293b;
-    border-top: 3px solid #2563eb;
-    padding: 10px 16px;
-    z-index: 100;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: #1e293b; border-top: 3px solid #2563eb;
+    padding: 10px 16px; z-index: 100;
+    transform: translateY(100%); transition: transform 0.3s ease;
     box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
   }
   #compare-bar.visible { transform: translateY(0); }
 
-  .compare-bar-header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 8px;
-  }
+  .compare-bar-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
   .compare-bar-title { font-size: 0.8rem; font-weight: 700; color: #fff; }
   .compare-bar-actions { display: flex; gap: 8px; }
 
   .compare-clear-btn {
     padding: 4px 12px; border-radius: 12px; border: 1px solid #475569;
-    background: transparent; color: #94a3b8; font-size: 0.72rem;
-    cursor: pointer; font-weight: 600;
+    background: transparent; color: #94a3b8; font-size: 0.72rem; cursor: pointer; font-weight: 600;
   }
   .compare-clear-btn:hover { border-color: #94a3b8; color: #fff; }
 
   .compare-view-btn {
-    padding: 4px 14px; border-radius: 12px;
-    background: #2563eb; border: none;
-    color: #fff; font-size: 0.72rem; cursor: pointer; font-weight: 700;
+    padding: 4px 14px; border-radius: 12px; background: #2563eb;
+    border: none; color: #fff; font-size: 0.72rem; cursor: pointer; font-weight: 700;
   }
   .compare-view-btn:hover { background: #1d4ed8; }
 
-  .compare-items {
-    display: flex; gap: 8px; overflow-x: auto;
-    scrollbar-width: none; padding-bottom: 2px;
-  }
+  .compare-items { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
   .compare-items::-webkit-scrollbar { display: none; }
 
   .compare-item {
     background: #334155; border-radius: 8px; padding: 6px 10px;
     min-width: 140px; flex-shrink: 0; position: relative;
   }
-  .compare-item-name { font-size: 0.72rem; font-weight: 700; color: #e2e8f0; }
-  .compare-item-cap  { font-size: 0.82rem; font-weight: 900; color: #60a5fa; }
+  .compare-item-name  { font-size: 0.72rem; font-weight: 700; color: #e2e8f0; }
+  .compare-item-cap   { font-size: 0.82rem; font-weight: 900; color: #60a5fa; }
   .compare-item-price { font-size: 0.7rem; color: #fb923c; font-weight: 700; }
-  .compare-item-cost { font-size: 0.65rem; color: #94a3b8; margin-top: 2px; }
+  .compare-item-cost  { font-size: 0.65rem; color: #94a3b8; margin-top: 2px; }
   .compare-item-remove {
     position: absolute; top: 4px; right: 6px;
-    background: none; border: none; color: #64748b;
-    font-size: 0.9rem; cursor: pointer; line-height: 1;
+    background: none; border: none; color: #64748b; font-size: 0.9rem; cursor: pointer; line-height: 1;
   }
   .compare-item-remove:hover { color: #f87171; }
 
-  /* 比較モーダル */
   #compare-modal {
     display: none; position: fixed; inset: 0;
     background: rgba(0,0,0,0.6); z-index: 200;
-    align-items: center; justify-content: center;
-    padding: 16px;
+    align-items: center; justify-content: center; padding: 16px;
   }
   #compare-modal.open { display: flex; }
 
   .modal-inner {
-    background: #fff; border-radius: 14px;
-    width: 100%; max-width: 900px; max-height: 90vh;
-    overflow-y: auto; padding: 24px;
+    background: #fff; border-radius: 14px; width: 100%; max-width: 900px;
+    max-height: 90vh; overflow-y: auto; padding: 24px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.3);
   }
-  .modal-header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 20px;
-  }
+  .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
   .modal-title { font-size: 1.1rem; font-weight: 900; color: #1e293b; }
-  .modal-close {
-    background: none; border: none; font-size: 1.4rem;
-    cursor: pointer; color: #94a3b8; line-height: 1;
-  }
+  .modal-close { background: none; border: none; font-size: 1.4rem; cursor: pointer; color: #94a3b8; }
   .modal-close:hover { color: #1e293b; }
 
-  .compare-table {
-    display: grid;
-    gap: 10px;
-  }
-  .compare-row {
-    display: grid;
-    gap: 8px;
-    align-items: stretch;
-  }
+  .compare-table { display: grid; gap: 10px; }
 
-  .compare-card {
-    background: #f8fafc; border: 2px solid #e2e8f0;
-    border-radius: 10px; padding: 14px;
-  }
+  .compare-card { background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 10px; padding: 14px; }
   .compare-card.best { border-color: #f97316; background: #fff7ed; }
-
   .compare-card-maker { font-size: 0.7rem; color: #64748b; margin-bottom: 2px; }
   .compare-card-name  { font-size: 0.9rem; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
   .compare-card-cap   { font-size: 1.5rem; font-weight: 900; color: #1e40af; line-height: 1; margin-bottom: 8px; }
@@ -268,26 +205,20 @@
 
   .best-badge {
     display: inline-block; background: #f97316; color: #fff;
-    font-size: 0.62rem; font-weight: 700; padding: 2px 7px;
-    border-radius: 8px; margin-bottom: 6px;
+    font-size: 0.62rem; font-weight: 700; padding: 2px 7px; border-radius: 8px; margin-bottom: 6px;
   }
 
-  .no-result {
-    text-align: center; padding: 40px 20px; color: #94a3b8;
-    font-size: 0.9rem; background: #fff; border-radius: 10px;
-  }
+  .no-result { text-align: center; padding: 40px 20px; color: #94a3b8; font-size: 0.9rem; background: #fff; border-radius: 10px; }
 
   .note {
     background: #fff; border-left: 4px solid #f97316; border-radius: 4px;
     padding: 12px 16px; font-size: 0.72rem; color: #64748b;
-    line-height: 1.8; margin-top: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    line-height: 1.8; margin-top: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);
   }
 
   footer {
-    text-align: center; padding: 20px; font-size: 0.7rem;
-    color: #94a3b8; border-top: 1px solid #e2e8f0;
-    background: #fff; margin-top: 32px;
+    text-align: center; padding: 20px; font-size: 0.7rem; color: #94a3b8;
+    border-top: 1px solid #e2e8f0; background: #fff; margin-top: 32px;
   }
 
   @media (max-width: 600px) {
@@ -307,7 +238,7 @@
 <header>
   <div class="logo-area">
     <span class="badge-sbi">SBI 新生銀行グループ</span>
-    <h1>ミライエコ＋ 蓄電池リース</h1>
+    <h1 id="page-title">ミライエコ＋ 蓄電池リース</h1>
   </div>
   <p>最新ラインナップ・リース料金一覧</p>
 </header>
@@ -318,14 +249,14 @@
     <div class="result-count" id="result-count"></div>
   </div>
 
-  <div class="filter-section">
-    <div class="filter-row">
+  <div class="filter-section" id="filter-section">
+    <div class="filter-row" id="row-maker">
       <div class="filter-label">メーカー</div>
       <div class="filter-scroll-wrap">
         <div class="filter-scroll-inner" id="filter-maker"></div>
       </div>
     </div>
-    <div class="filter-row">
+    <div class="filter-row" id="row-type">
       <div class="filter-label">タイプ</div>
       <div class="filter-btns">
         <button class="filter-btn" data-group="type" data-val="ハイブリッド" onclick="toggleFilter(this)">ハイブリッド</button>
@@ -333,14 +264,14 @@
         <button class="filter-btn" data-group="type" data-val="V2H" onclick="toggleFilter(this)">V2H</button>
       </div>
     </div>
-    <div class="filter-row">
+    <div class="filter-row" id="row-load">
       <div class="filter-label">負荷タイプ</div>
       <div class="filter-btns">
         <button class="filter-btn" data-group="load" data-val="全負荷" onclick="toggleFilter(this)">全負荷</button>
         <button class="filter-btn" data-group="load" data-val="特定負荷" onclick="toggleFilter(this)">特定負荷</button>
       </div>
     </div>
-    <div class="filter-row">
+    <div class="filter-row" id="row-sochiku">
       <div class="filter-label">割引</div>
       <div class="filter-btns">
         <button class="filter-btn orange" data-group="sochiku" data-val="true" onclick="toggleFilter(this)">🔶 創蓄連携割引対象のみ</button>
@@ -350,13 +281,7 @@
   </div>
 
   <div id="lineup"></div>
-
-  <div class="note">
-    ※リース期間：10年間｜リース満了後は無償譲渡（返却不要）<br>
-    ※創蓄連携割引は「ミライエコ＋太陽光リース」との同時契約が条件です<br>
-    ※設置条件によっては初期費用（追加工事費）が必要な場合があります<br>
-    ※地震・噴火・津波・戦争・塩害による損害は保証対象外
-  </div>
+  <div class="note" id="note-text"></div>
 </div>
 
 <footer>
@@ -364,7 +289,6 @@
   鳥取支店：鳥取市吉方温泉4-719 MORIビル2F｜福岡支店：久留米市本町2-23 豊国産業ビル2F
 </footer>
 
-<!-- 比較バー -->
 <div id="compare-bar">
   <div class="compare-bar-header">
     <div class="compare-bar-title">📊 コスパ比較中 <span id="compare-count"></span></div>
@@ -376,7 +300,6 @@
   <div class="compare-items" id="compare-items"></div>
 </div>
 
-<!-- 比較モーダル -->
 <div id="compare-modal">
   <div class="modal-inner">
     <div class="modal-header">
@@ -389,20 +312,58 @@
 
 <script>
   let allProducts = [];
+  let settings = {};
   const activeFilters = { maker: [], type: [], load: [], sochiku: [] };
-  let compareList = []; // {id, product}
+  let compareList = [];
 
-  fetch('lineup.json?t=' + Date.now())
-    .then(r => r.json())
-    .then(data => {
-      allProducts = data.products.map((p, i) => ({ ...p, _id: i }));
-      document.getElementById('updated').textContent = '最終更新：' + data.updated;
-      buildMakerFilters(allProducts);
-      renderCards(allProducts);
-    })
-    .catch(() => {
-      document.getElementById('lineup').innerHTML = '<div class="no-result">データの読み込みに失敗しました。</div>';
-    });
+  const ts = '?t=' + Date.now();
+
+  // settings.json と lineup.json を並行して取得
+  Promise.all([
+    fetch('settings.json' + ts).then(r => r.json()),
+    fetch('lineup.json' + ts).then(r => r.json())
+  ]).then(([s, d]) => {
+    settings = s;
+    allProducts = d.products.map((p, i) => ({ ...p, _id: i }));
+
+    applySettings();
+    document.getElementById('updated').textContent = '最終更新：' + d.updated;
+    buildMakerFilters(allProducts);
+    renderCards(allProducts);
+  }).catch(() => {
+    document.getElementById('lineup').innerHTML = '<div class="no-result">データの読み込みに失敗しました。</div>';
+  });
+
+  function applySettings() {
+    const f = settings.features || {};
+    const d = settings.display || {};
+
+    // ページタイトル
+    if (d.page_title) {
+      document.getElementById('page-title').textContent = d.page_title;
+      document.title = d.page_title + ' | ミライエコ＋';
+    }
+
+    // 注意書き
+    if (d.note_text) {
+      document.getElementById('note-text').innerHTML =
+        d.note_text.replace(/\n/g, '<br>');
+    }
+
+    // フィルター行の表示制御
+    if (f.filter_maker === false) document.getElementById('row-maker').style.display = 'none';
+    if (f.filter_type  === false) document.getElementById('row-type').style.display = 'none';
+    if (f.filter_load  === false) document.getElementById('row-load').style.display = 'none';
+    if (f.filter_sochiku === false) document.getElementById('row-sochiku').style.display = 'none';
+
+    // フィルターパネル全体（全部OFFなら隠す）
+    const anyFilter = f.filter_maker !== false || f.filter_type !== false ||
+                      f.filter_load !== false || f.filter_sochiku !== false;
+    if (!anyFilter) document.getElementById('filter-section').style.display = 'none';
+
+    // 比較バー
+    if (f.compare_mode === false) document.getElementById('compare-bar').style.display = 'none';
+  }
 
   function buildMakerFilters(products) {
     const makers = [...new Set(products.map(p => p.maker))];
@@ -435,14 +396,14 @@
     renderCards(filtered);
   }
 
-  // 円/kWh計算（容量が数値でない場合はnull）
-  function calcCostPerKwh(product) {
-    const cap = parseFloat(product.capacity);
+  function calcCostPerKwh(p) {
+    const cap = parseFloat(p.capacity);
     if (isNaN(cap) || cap <= 0) return null;
-    return Math.round(product.price_ex / cap);
+    return Math.round(p.price_ex / cap);
   }
 
   function renderCards(products) {
+    const f = settings.features || {};
     const container = document.getElementById('lineup');
     document.getElementById('result-count').textContent = products.length + '件表示中';
     if (!products.length) {
@@ -462,8 +423,14 @@
               : p.type === 'V2H' ? '<span class="type-badge v2h">V2H</span>'
               : '<span class="type-badge single">単機能</span>';
             const loadBadge = p.load !== 'なし' ? `<span class="type-badge load">${p.load}</span>` : '';
-            const catalogBtn = p.url ? `<a href="${p.url}" target="_blank" rel="noopener" class="catalog-btn">📄 カタログはこちら</a>` : '';
-            const cpr = calcCostPerKwh(p);
+            const catalogBtn = (f.catalog_link !== false && p.url)
+              ? `<a href="${p.url}" target="_blank" rel="noopener" class="catalog-btn">📄 カタログはこちら</a>` : '';
+            const compareBtn = f.compare_mode !== false
+              ? `<button class="compare-toggle-btn ${inCompare ? 'added' : ''}" onclick="toggleCompare(${p._id})">
+                   ${inCompare ? '✓ 比較中' : '＋ 比較に追加'}
+                 </button>` : '';
+            const taxLine = f.show_tax_price !== false
+              ? `<div class="price-tax">税込 ${p.price_in.toLocaleString()}円/月</div>` : '';
             return `
               <div class="card ${p.sochiku ? 'sochiku' : ''} ${inCompare ? 'in-compare' : ''}" id="card-${p._id}">
                 ${p.sochiku ? '<div class="sochiku-badge">🔶 創蓄連携割引対象</div>' : ''}
@@ -473,13 +440,10 @@
                 <div class="price-area">
                   <div class="price-label">月々リース料（税抜）</div>
                   <div class="price-main">${p.price_ex.toLocaleString()}<span>円/月</span></div>
-                  <div class="price-tax">税込 ${p.price_in.toLocaleString()}円/月</div>
+                  ${taxLine}
                 </div>
                 ${catalogBtn}
-                <button class="compare-toggle-btn ${inCompare ? 'added' : ''}"
-                  onclick="toggleCompare(${p._id})">
-                  ${inCompare ? '✓ 比較中' : '＋ 比較に追加'}
-                </button>
+                ${compareBtn}
               </div>
             `;
           }).join('')}
@@ -488,8 +452,8 @@
     `).join('');
   }
 
-  // 比較機能
   function toggleCompare(id) {
+    if ((settings.features || {}).compare_mode === false) return;
     const p = allProducts.find(p => p._id === id);
     const idx = compareList.findIndex(c => c._id === id);
     if (idx === -1) {
@@ -499,7 +463,6 @@
       compareList.splice(idx, 1);
     }
     updateCompareBar();
-    // カードの見た目だけ更新
     const card = document.getElementById('card-' + id);
     if (card) {
       const inCompare = compareList.some(c => c._id === id);
@@ -545,20 +508,13 @@
     const modal = document.getElementById('compare-modal');
     const table = document.getElementById('compare-table');
     modal.classList.add('open');
-
-    // 円/kWhが計算できるものだけ最安値を算出
     const costs = compareList.map(p => calcCostPerKwh(p)).filter(v => v !== null);
-    const bestCost = costs.length ? Math.min(...costs) : null;
-    const bestPrice = Math.min(...compareList.map(p => p.price_ex));
-
-    // 列数に合わせてgrid設定
+    const bestCost  = costs.length ? Math.min(...costs) : null;
     const cols = Math.min(compareList.length, 3);
     table.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-
     table.innerHTML = compareList.map(p => {
       const cpr = calcCostPerKwh(p);
-      const isBestCost  = cpr !== null && cpr === bestCost;
-      const isBestPrice = p.price_ex === bestPrice;
+      const isBestCost = cpr !== null && cpr === bestCost;
       return `
         <div class="compare-card ${isBestCost ? 'best' : ''}">
           ${isBestCost ? '<div class="best-badge">🏆 コスパ最良</div>' : ''}
@@ -596,10 +552,7 @@
     }).join('');
   }
 
-  function closeModal() {
-    document.getElementById('compare-modal').classList.remove('open');
-  }
-
+  function closeModal() { document.getElementById('compare-modal').classList.remove('open'); }
   document.getElementById('compare-modal').addEventListener('click', function(e) {
     if (e.target === this) closeModal();
   });
