@@ -4,17 +4,6 @@
     {
       "maker": "ハンファジャパン",
       "name": "QREADY蓄電池",
-      "capacity": "7.7kWh",
-      "type": "ハイブリッド",
-      "load": "全負荷",
-      "price_ex": 13100,
-      "price_in": 14410,
-      "sochiku": true,
-      "url": ""
-    },
-    {
-      "maker": "ハンファジャパン",
-      "name": "QREADY蓄電池",
       "capacity": "9.7kWh",
       "type": "ハイブリッド",
       "load": "全負荷",
