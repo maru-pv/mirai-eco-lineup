@@ -1,5 +1,5 @@
 {
-  "updated": "2025-05-14",
+  "updated": "2026-05-15",
   "products": [
     {
       "maker": "ハンファジャパン",
@@ -257,7 +257,7 @@
     {
       "maker": "ネクストエナジー",
       "name": "Dulight",
-      "capacity": "PV10枚搭載",
+      "capacity": "積雪60cm以下 PV10枚搭載",
       "type": "単機能",
       "load": "なし",
       "price_ex": 23600,
@@ -268,7 +268,7 @@
     {
       "maker": "ネクストエナジー",
       "name": "Dulight",
-      "capacity": "PV10枚搭載",
+      "capacity": "積雪99cm以下 PV10枚搭載",
       "type": "単機能",
       "load": "なし",
       "price_ex": 24300,
@@ -279,7 +279,7 @@
     {
       "maker": "ネクストエナジー",
       "name": "Dulight",
-      "capacity": "PV10枚搭載",
+      "capacity": "積雪150cm以下 PV10枚搭載",
       "type": "単機能",
       "load": "なし",
       "price_ex": 24800,
