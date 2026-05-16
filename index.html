@@ -18,9 +18,32 @@
   header {
     background: linear-gradient(90deg, #1e40af, #2563eb);
     padding: 14px 20px;
-    text-align: center;
     box-shadow: 0 4px 16px rgba(30,64,175,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
   }
+
+  .header-center {
+    text-align: center;
+    flex: 1;
+  }
+
+  .header-logo {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .header-logo img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
+
   .logo-area { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
   header h1 { font-size: 1.4rem; font-weight: 900; color: #fff; letter-spacing: 0.05em; }
   header p { font-size: 0.78rem; color: rgba(255,255,255,0.85); margin-top: 4px; }
@@ -223,6 +246,7 @@
 
   @media (max-width: 600px) {
     header h1 { font-size: 1.1rem; }
+    .header-logo img { height: 36px; }
     .container { padding: 12px 10px 40px; }
     .cards { grid-template-columns: 1fr 1fr; gap: 6px; padding: 8px; }
     .card { padding: 8px; }
@@ -236,11 +260,16 @@
 <body>
 
 <header>
-  <div class="logo-area">
-    <span class="badge-sbi">SBI 新生銀行グループ</span>
-    <h1 id="page-title">ミライエコ＋ 蓄電池リース</h1>
+  <div class="header-center">
+    <div class="logo-area">
+      <span class="badge-sbi">SBI 新生銀行グループ</span>
+      <h1 id="page-title">ミライエコ＋ 蓄電池リース</h1>
+    </div>
+    <p>最新ラインナップ・リース料金一覧</p>
   </div>
-  <p>最新ラインナップ・リース料金一覧</p>
+  <div class="header-logo">
+    <img src="makingenergy1.png" alt="Making Energy ロゴ">
+  </div>
 </header>
 
 <div class="container">
@@ -318,14 +347,12 @@
 
   const ts = '?t=' + Date.now();
 
-  // settings.json と lineup.json を並行して取得
   Promise.all([
     fetch('settings.json' + ts).then(r => r.json()),
     fetch('lineup.json' + ts).then(r => r.json())
   ]).then(([s, d]) => {
     settings = s;
     allProducts = d.products.map((p, i) => ({ ...p, _id: i }));
-
     applySettings();
     document.getElementById('updated').textContent = '最終更新：' + d.updated;
     buildMakerFilters(allProducts);
@@ -337,31 +364,20 @@
   function applySettings() {
     const f = settings.features || {};
     const d = settings.display || {};
-
-    // ページタイトル
     if (d.page_title) {
       document.getElementById('page-title').textContent = d.page_title;
       document.title = d.page_title + ' | ミライエコ＋';
     }
-
-    // 注意書き
     if (d.note_text) {
-      document.getElementById('note-text').innerHTML =
-        d.note_text.replace(/\n/g, '<br>');
+      document.getElementById('note-text').innerHTML = d.note_text.replace(/\n/g, '<br>');
     }
-
-    // フィルター行の表示制御
     if (f.filter_maker === false) document.getElementById('row-maker').style.display = 'none';
     if (f.filter_type  === false) document.getElementById('row-type').style.display = 'none';
     if (f.filter_load  === false) document.getElementById('row-load').style.display = 'none';
     if (f.filter_sochiku === false) document.getElementById('row-sochiku').style.display = 'none';
-
-    // フィルターパネル全体（全部OFFなら隠す）
     const anyFilter = f.filter_maker !== false || f.filter_type !== false ||
                       f.filter_load !== false || f.filter_sochiku !== false;
     if (!anyFilter) document.getElementById('filter-section').style.display = 'none';
-
-    // 比較バー
     if (f.compare_mode === false) document.getElementById('compare-bar').style.display = 'none';
   }
 
@@ -509,7 +525,7 @@
     const table = document.getElementById('compare-table');
     modal.classList.add('open');
     const costs = compareList.map(p => calcCostPerKwh(p)).filter(v => v !== null);
-    const bestCost  = costs.length ? Math.min(...costs) : null;
+    const bestCost = costs.length ? Math.min(...costs) : null;
     const cols = Math.min(compareList.length, 3);
     table.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
     table.innerHTML = compareList.map(p => {
