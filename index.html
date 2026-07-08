@@ -54,6 +54,24 @@
   .updated { font-size: 0.72rem; color: #64748b; }
   .result-count { font-size: 0.72rem; color: #64748b; }
 
+  /* ★ リース期間切り替えトグル */
+  .lease-toggle-wrap {
+    display: flex; justify-content: center; margin-bottom: 14px;
+  }
+  .lease-toggle {
+    display: inline-flex; background: #e2e8f0; border-radius: 24px; padding: 3px; gap: 2px;
+  }
+  .lease-toggle-btn {
+    padding: 6px 22px; border-radius: 20px; border: none; font-size: 0.82rem;
+    font-weight: 700; cursor: pointer; transition: all 0.2s; color: #64748b; background: transparent;
+  }
+  .lease-toggle-btn.active {
+    background: #2563eb; color: #fff; box-shadow: 0 2px 8px rgba(37,99,235,0.35);
+  }
+  .lease-period-note {
+    text-align: center; font-size: 0.7rem; color: #94a3b8; margin-bottom: 12px; margin-top: -6px;
+  }
+
   .filter-section {
     background: #fff; border-radius: 10px; padding: 12px 16px;
     margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
@@ -253,6 +271,7 @@
     .price-main { font-size: 1rem; }
     .filter-label { width: 56px; font-size: 0.68rem; }
     .filter-btn { font-size: 0.7rem; padding: 3px 9px; }
+    .lease-toggle-btn { padding: 5px 16px; font-size: 0.78rem; }
   }
 </style>
 </head>
@@ -276,6 +295,15 @@
     <div class="updated" id="updated"></div>
     <div class="result-count" id="result-count"></div>
   </div>
+
+  <!-- ★ リース期間切り替えトグル -->
+  <div class="lease-toggle-wrap">
+    <div class="lease-toggle">
+      <button class="lease-toggle-btn active" id="btn-10" onclick="setLeasePeriod(10)">10年リース</button>
+      <button class="lease-toggle-btn" id="btn-15" onclick="setLeasePeriod(15)">15年リース</button>
+    </div>
+  </div>
+  <div class="lease-period-note" id="lease-period-note">リース期間：10年間｜満了後は無償譲渡</div>
 
   <div class="filter-section" id="filter-section">
     <div class="filter-row" id="row-maker">
@@ -343,6 +371,7 @@
   let settings = {};
   const activeFilters = { maker: [], type: [], load: [], sochiku: [] };
   let compareList = [];
+  let leasePeriod = 10; // ★ 現在のリース期間（10 or 15）
 
   const ts = '?t=' + Date.now();
 
@@ -359,6 +388,27 @@
   }).catch(() => {
     document.getElementById('lineup').innerHTML = '<div class="no-result">データの読み込みに失敗しました。</div>';
   });
+
+  // ★ リース期間切り替え
+  function setLeasePeriod(period) {
+    leasePeriod = period;
+    document.getElementById('btn-10').classList.toggle('active', period === 10);
+    document.getElementById('btn-15').classList.toggle('active', period === 15);
+    document.getElementById('lease-period-note').textContent =
+      period === 10
+        ? 'リース期間：10年間｜満了後は無償譲渡'
+        : 'リース期間：15年間｜満了後は無償譲渡';
+    applyFilters();
+    // 比較バーの金額も更新
+    if (compareList.length > 0) updateCompareBar();
+  }
+
+  // ★ 現在のリース期間に応じた価格を返すヘルパー
+  function getPrice(p) {
+    return leasePeriod === 15
+      ? { ex: p.price_ex15 ?? p.price_ex, inTax: p.price_in15 ?? p.price_in }
+      : { ex: p.price_ex, inTax: p.price_in };
+  }
 
   function applySettings() {
     const f = settings.features || {};
@@ -414,7 +464,8 @@
   function calcCostPerKwh(p) {
     const cap = parseFloat(p.capacity);
     if (isNaN(cap) || cap <= 0) return null;
-    return Math.round(p.price_ex / cap);
+    const { ex } = getPrice(p);
+    return Math.round(ex / cap);
   }
 
   function renderCards(products) {
@@ -434,6 +485,7 @@
         <div class="cards">
           ${items.map(p => {
             const inCompare = compareList.some(c => c._id === p._id);
+            const { ex, inTax } = getPrice(p);
             const typeBadge = p.type === 'ハイブリッド' ? '<span class="type-badge hybrid">ハイブリッド</span>'
               : p.type === 'V2H' ? '<span class="type-badge v2h">V2H</span>'
               : '<span class="type-badge single">単機能</span>';
@@ -445,7 +497,7 @@
                    ${inCompare ? '✓ 比較中' : '＋ 比較に追加'}
                  </button>` : '';
             const taxLine = f.show_tax_price !== false
-              ? `<div class="price-tax">税込 ${p.price_in.toLocaleString()}円/月</div>` : '';
+              ? `<div class="price-tax">税込 ${inTax.toLocaleString()}円/月</div>` : '';
             return `
               <div class="card ${p.sochiku ? 'sochiku' : ''} ${inCompare ? 'in-compare' : ''}" id="card-${p._id}">
                 ${p.sochiku ? '<div class="sochiku-badge">🔶 創蓄連携割引対象</div>' : ''}
@@ -454,7 +506,7 @@
                 <div class="card-capacity">${p.capacity}</div>
                 <div class="price-area">
                   <div class="price-label">月々リース料（税抜）</div>
-                  <div class="price-main">${p.price_ex.toLocaleString()}<span>円/月</span></div>
+                  <div class="price-main">${ex.toLocaleString()}<span>円/月</span></div>
                   ${taxLine}
                 </div>
                 ${catalogBtn}
@@ -495,13 +547,14 @@
     bar.classList.add('visible');
     countEl.textContent = `（${compareList.length}件選択中）`;
     itemsEl.innerHTML = compareList.map(p => {
+      const { ex } = getPrice(p);
       const cpr = calcCostPerKwh(p);
       return `
         <div class="compare-item">
           <button class="compare-item-remove" onclick="toggleCompare(${p._id})">✕</button>
           <div class="compare-item-name">${p.maker} ${p.name}</div>
           <div class="compare-item-cap">${p.capacity}</div>
-          <div class="compare-item-price">${p.price_ex.toLocaleString()}円/月</div>
+          <div class="compare-item-price">${ex.toLocaleString()}円/月</div>
           ${cpr ? `<div class="compare-item-cost">${cpr.toLocaleString()}円/kWh</div>` : ''}
         </div>
       `;
@@ -528,6 +581,7 @@
     const cols = Math.min(compareList.length, 3);
     table.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
     table.innerHTML = compareList.map(p => {
+      const { ex, inTax } = getPrice(p);
       const cpr = calcCostPerKwh(p);
       const isBestCost = cpr !== null && cpr === bestCost;
       return `
@@ -538,11 +592,11 @@
           <div class="compare-card-cap">${p.capacity}</div>
           <div class="compare-stat">
             <span class="compare-stat-label">月額（税抜）</span>
-            <span class="compare-stat-val highlight">${p.price_ex.toLocaleString()}円</span>
+            <span class="compare-stat-val highlight">${ex.toLocaleString()}円</span>
           </div>
           <div class="compare-stat">
             <span class="compare-stat-label">月額（税込）</span>
-            <span class="compare-stat-val">${p.price_in.toLocaleString()}円</span>
+            <span class="compare-stat-val">${inTax.toLocaleString()}円</span>
           </div>
           <div class="compare-stat">
             <span class="compare-stat-label">円/kWh</span>
