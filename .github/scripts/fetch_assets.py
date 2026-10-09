@@ -18,6 +18,8 @@ today = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d')
 
 
 def get(url):
+    if url.startswith('file://'):
+        return open(url[7:], 'rb').read(), ''
     req = urllib.request.Request(url, headers={
         'User-Agent': UA, 'Accept': '*/*', 'Accept-Language': 'ja,en;q=0.8'})
     with urllib.request.urlopen(req, timeout=90) as r:
@@ -60,6 +62,38 @@ def save_image(url, base, maxw=900, crop=None, erase=None, trim=False):
     path = base + '.webp'
     im.save(path, 'WEBP', quality=86)
     return path
+
+
+def save_catalog_pages(base, count, path):
+    # ページごとに分かれたWebカタログ（1.pdf, 2.pdf ...）を1つのPDFにまとめて保存
+    import pymupdf
+    out = pymupdf.open()
+    for n in range(1, count + 1):
+        data, ct = get(base.replace('{n}', str(n)))
+        if not data.startswith(b'%PDF'):
+            raise ValueError(f'{n}ページ目がPDFではありません')
+        out.insert_pdf(pymupdf.open(stream=data, filetype='pdf'))
+    out.save(path, garbage=3, deflate=True)
+    return path
+
+
+def image_from_catalog(pdf_path, page, xref, base, maxw=900, trim=True):
+    # カタログPDFの中の製品写真（画像）を取り出して保存
+    import pymupdf
+    doc = pymupdf.open(pdf_path)
+    pix = pymupdf.Pixmap(doc, xref)
+    if pix.n - pix.alpha > 3:
+        pix = pymupdf.Pixmap(pymupdf.csRGB, pix)
+    smask = [im for im in doc[page - 1].get_images(full=True) if im[0] == xref]
+    if smask and smask[0][1]:
+        mask = pymupdf.Pixmap(doc, smask[0][1])
+        pix = pymupdf.Pixmap(pix, mask)
+    tmp = base + '.tmp.png'
+    pix.save(tmp)
+    try:
+        return save_image('file://' + os.path.abspath(tmp), base, maxw=maxw, trim=trim)
+    finally:
+        os.remove(tmp)
 
 
 def save_pdf(url, path):
@@ -109,11 +143,24 @@ for s in src.get('series', []):
                                         trim=s.get('image_trim', False))
         except Exception as e:
             errors.append(f'image: {e}')
-    if s.get('catalog'):
+    if s.get('catalog_pages'):
+        cp = s['catalog_pages']
+        try:
+            entry['catalog_local'] = save_catalog_pages(cp['base'], cp['count'], f'assets/catalogs/{key}.pdf')
+        except Exception as e:
+            errors.append(f'catalog_pages: {e}')
+    elif s.get('catalog'):
         try:
             entry['catalog_local'] = save_pdf(s['catalog'], f'assets/catalogs/{key}.pdf')
         except Exception as e:
             errors.append(f'catalog: {e}')
+    if s.get('image_from_catalog'):
+        ic = s['image_from_catalog']
+        src_pdf = 'assets/catalogs/' + ic['catalog_key'] + '.pdf'
+        try:
+            entry['image'] = image_from_catalog(src_pdf, ic['page'], ic['xref'], 'assets/images/' + key)
+        except Exception as e:
+            errors.append(f'image_from_catalog: {e}')
     entry['checked'] = today
     entry['errors'] = errors
     man['series'][key] = entry
