@@ -1,0 +1,113 @@
+{
+  "logos": {
+    "ハンファジャパン": {
+      "file": "assets/logos/logo-55dc3316.webp",
+      "checked": "2026-10-09",
+      "source": "https://www.q-cells.jp/qreadylp/images/logo_qcells.png"
+    },
+    "住友電気工業": {
+      "file": "assets/logos/logo-12b02567.svg",
+      "checked": "2026-10-09",
+      "source": "https://sumitomoelectric.com/jp/sites/japan/files/brand_mark_j.svg"
+    },
+    "長州産業": {
+      "file": "assets/logos/logo-3e5e0a0a.svg",
+      "checked": "2026-10-09",
+      "source": "https://cic-solar.jp/wp-content/themes/ill/img/logo.svg"
+    },
+    "ニチコン": {
+      "file": "assets/logos/logo-0aeb2d6e.svg",
+      "checked": "2026-10-09",
+      "source": "https://www.nichicon.co.jp/_assets/images/common/logo.svg"
+    },
+    "カナディアンソーラー": {
+      "file": "assets/logos/logo-e9518a3a.webp",
+      "checked": "2026-10-09",
+      "source": "https://csisolar.co.jp/wp-content/themes/canadian_solar/img/logo/logo01.png"
+    },
+    "ファーウェイ": {
+      "file": "assets/logos/logo-37add5d2.webp",
+      "checked": "2026-10-09",
+      "source": "https://solar.huawei.com/-/media/hcomponent-solar-header/0.1.0.20241225142716/component/corporate/images/home/logo/huawei_logo.png"
+    }
+  },
+  "series": {
+    "qready": {
+      "page": "https://www.q-cells.jp/qreadylp/",
+      "catalog_official": "https://www.q-cells.jp/wp-content/uploads/2025/08/Qready.pdf",
+      "image": "assets/images/qready.webp",
+      "catalog_local": "assets/catalogs/qready.pdf",
+      "checked": "2026-10-09",
+      "errors": []
+    },
+    "powerdepo-r": {
+      "page": "https://sumitomoelectric.com/jp/products/powerdepo/r",
+      "catalog_official": "https://sumitomoelectric.com/jp/sites/japan/files/2026-05/download_documents/PDR_CA_R1.pdf",
+      "image": "assets/images/powerdepo-r.webp",
+      "catalog_local": "assets/catalogs/powerdepo-r.pdf",
+      "checked": "2026-10-09",
+      "errors": []
+    },
+    "spvm2": {
+      "page": "https://cic-solar.jp/products/power-storage-system/",
+      "catalog_official": "https://cic-solar.jp/catalog/spvm2_260518/top.html",
+      "image": "assets/images/spvm2.webp",
+      "checked": "2026-10-09",
+      "errors": [
+        "catalog: PDFではありません (text/html)"
+      ]
+    },
+    "spvm": {
+      "page": "https://cic-solar.jp/products/power-storage-system/",
+      "catalog_official": "https://cic-solar.jp/catalog/spvm_260518/top.html",
+      "image": "assets/images/spvm.webp",
+      "checked": "2026-10-09",
+      "errors": [
+        "catalog: PDFではありません (text/html)"
+      ],
+      "catalog_archive": "https://web.archive.org/web/https://cic-solar.jp/catalog/spvm_260518/top.html"
+    },
+    "evps": {
+      "page": "https://www.nichicon.co.jp/products/v2h/vcg/",
+      "catalog_official": "https://www.nichicon.co.jp/wp-content/uploads/EVPS.pdf",
+      "image": "assets/images/evps.webp",
+      "catalog_local": "assets/catalogs/evps.pdf",
+      "checked": "2026-10-09",
+      "errors": []
+    },
+    "ess-u5": {
+      "page": "https://www.nichicon.co.jp/products/ess/series_ess-u5.html",
+      "catalog_official": "https://www.nichicon.co.jp/wp-content/uploads/ess-u5m1_u5l1.pdf",
+      "image": "assets/images/ess-u5.webp",
+      "catalog_local": "assets/catalogs/ess-u5.pdf",
+      "checked": "2026-10-09",
+      "errors": []
+    },
+    "tribrid-t5t6": {
+      "page": "https://www.nichicon.co.jp/products/ess/t5t6system/",
+      "catalog_official": "https://www.nichicon.co.jp/wp-content/uploads/tribrid_t5t6.pdf",
+      "image": "assets/images/tribrid-t5t6.webp",
+      "catalog_local": "assets/catalogs/tribrid-t5t6.pdf",
+      "checked": "2026-10-09",
+      "errors": [],
+      "page_archive": "https://web.archive.org/web/https://www.nichicon.co.jp/products/ess/t5t6system/"
+    },
+    "epcube": {
+      "page": "https://csisolar.co.jp/products/ep-cube/",
+      "catalog_official": "https://csisolar.co.jp/wp-content/themes/canadian_solar/pdf/%5BJET%5D%20EP%20Cube%20Catalog_JP2_20260302_v1.3",
+      "image": "assets/images/epcube.webp",
+      "catalog_local": "assets/catalogs/epcube.pdf",
+      "checked": "2026-10-09",
+      "errors": []
+    },
+    "luna2000-s1": {
+      "page": "https://solar.huawei.com/jp/products/LUNA2000-7-14-21-NHS1/",
+      "catalog_official": "https://solar.huawei.com/jp/products/LUNA2000-7-14-21-NHS1/specs/",
+      "image": "assets/images/luna2000-s1.webp",
+      "checked": "2026-10-09",
+      "errors": [
+        "catalog: PDFではありません (text/html; charset=utf-8)"
+      ]
+    }
+  }
+}
