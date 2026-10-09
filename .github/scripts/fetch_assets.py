@@ -1,7 +1,7 @@
 # メーカーのカタログ・製品画像・ロゴを取得して assets/ に保存するスクリプト
 # 取得に失敗したものは前回保存分を残す（リンク切れ対策）
 import datetime, hashlib, io, json, os, time, urllib.request
-from PIL import Image, ImageDraw
+from PIL import Image, ImageChops, ImageDraw
 
 UA = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
       '(KHTML, like Gecko) Chrome/128.0 Safari/537.36')
@@ -24,7 +24,7 @@ def get(url):
         return r.read(), r.headers.get('Content-Type', '')
 
 
-def save_image(url, base, maxw=900, crop=None, erase=None):
+def save_image(url, base, maxw=900, crop=None, erase=None, trim=False):
     data, ct = get(url)
     if url.lower().split('?')[0].endswith('.svg') or 'svg' in ct:
         if b'<svg' not in data[:4000].lower():
@@ -44,6 +44,18 @@ def save_image(url, base, maxw=900, crop=None, erase=None):
     if crop:
         x0, y0, x1, y1 = crop
         im = im.crop((int(x0 * w), int(y0 * h), int(x1 * w), int(y1 * h)))
+    # trim: 切り出した後、周りの余白（透明・白）を詰める
+    if trim:
+        if im.mode == 'RGBA' and im.getchannel('A').getextrema()[0] < 250:
+            box = im.getchannel('A').point(lambda v: 255 if v > 16 else 0).getbbox()
+        else:
+            white = Image.new('RGB', im.size, (255, 255, 255))
+            box = ImageChops.difference(im.convert('RGB'), white).convert('L').point(
+                lambda v: 255 if v > 24 else 0).getbbox()
+        if box:
+            pad = int(max(im.size) * 0.03)
+            im = im.crop((max(0, box[0] - pad), max(0, box[1] - pad),
+                          min(im.width, box[2] + pad), min(im.height, box[3] + pad)))
     im.thumbnail((maxw, maxw))
     path = base + '.webp'
     im.save(path, 'WEBP', quality=86)
@@ -93,7 +105,8 @@ for s in src.get('series', []):
     if s.get('image'):
         try:
             entry['image'] = save_image(s['image'], 'assets/images/' + key,
-                                        crop=s.get('image_crop'), erase=s.get('image_erase'))
+                                        crop=s.get('image_crop'), erase=s.get('image_erase'),
+                                        trim=s.get('image_trim', False))
         except Exception as e:
             errors.append(f'image: {e}')
     if s.get('catalog'):
