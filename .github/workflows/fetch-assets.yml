@@ -1,0 +1,37 @@
+name: メーカー資料・画像の自動取得
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/sources.json'
+      - '.github/scripts/fetch_assets.py'
+      - '.github/workflows/fetch-assets.yml'
+  schedule:
+    - cron: '0 18 1 * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-assets
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pillow
+      - run: python .github/scripts/fetch_assets.py
+      - name: 変更があれば保存
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets
+          if git diff --cached --quiet; then echo "変更なし"; else git commit -m "メーカー資料・画像を自動更新" && git pull --rebase && git push; fi
