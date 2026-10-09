@@ -21,7 +21,7 @@ concurrency:
 jobs:
   fetch:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -29,6 +29,10 @@ jobs:
           python-version: '3.12'
       - run: pip install pillow
       - run: python .github/scripts/fetch_assets.py
+        timeout-minutes: 35
+        continue-on-error: true
+        env:
+          PYTHONUNBUFFERED: '1'
       - name: 変更があれば保存
         run: |
           git config user.name "github-actions[bot]"
