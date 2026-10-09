@@ -11,63 +11,108 @@
   "series": [
     {
       "key": "qready",
-      "match": { "maker": "ハンファジャパン" },
+      "match": {
+        "maker": "ハンファジャパン"
+      },
       "page": "https://www.q-cells.jp/qreadylp/",
       "catalog": "https://www.q-cells.jp/wp-content/uploads/2025/08/Qready.pdf",
       "image": "https://www.q-cells.jp/qreadylp/images/webp/system-estorage_v3.webp"
     },
     {
       "key": "powerdepo-r",
-      "match": { "maker": "住友電気工業" },
+      "match": {
+        "maker": "住友電気工業"
+      },
       "page": "https://sumitomoelectric.com/jp/products/powerdepo/r",
       "catalog": "https://sumitomoelectric.com/jp/sites/japan/files/2026-05/download_documents/PDR_CA_R1.pdf",
       "image": "https://sumitomoelectric.com/jp/sites/japan/files/styles/crop_sei_cp_656x656/public/2026-05/products/variant_card/Overview%20list%20segment%20Image%201610%20POWER%20DEPO%20R.png"
     },
     {
       "key": "spvm2",
-      "match": { "maker": "長州産業", "capacity": ["6.3kWh", "12.7kWh"] },
+      "match": {
+        "maker": "長州産業",
+        "capacity": [
+          "6.3kWh",
+          "12.7kWh"
+        ]
+      },
       "page": "https://cic-solar.jp/products/power-storage-system/",
       "catalog": "https://cic-solar.jp/catalog/spvm2_260518/top.html",
-      "image": "https://cic-solar.jp/wp-content/themes/ill/img/system/smart_pv_multi2.jpg"
+      "image": "https://cic-solar.jp/wp-content/themes/ill/img/system/smart_pv_multi2.jpg",
+      "image_crop": [
+        0.02,
+        0.53,
+        0.98,
+        1
+      ]
     },
     {
       "key": "spvm",
-      "match": { "maker": "長州産業" },
+      "match": {
+        "maker": "長州産業"
+      },
       "page": "https://cic-solar.jp/products/power-storage-system/",
       "catalog": "https://cic-solar.jp/catalog/spvm_260518/top.html",
-      "image": "https://cic-solar.jp/wp-content/themes/ill/img/system/smart_pv_multi.jpg"
+      "image": "https://cic-solar.jp/wp-content/themes/ill/img/system/smart_pv_multi.jpg",
+      "image_erase": [
+        [
+          0,
+          0,
+          0.345,
+          0.53
+        ]
+      ],
+      "image_crop": [
+        0.09,
+        0.4,
+        0.91,
+        1
+      ]
     },
     {
       "key": "evps",
-      "match": { "maker": "ニチコン", "type": "V2H" },
+      "match": {
+        "maker": "ニチコン",
+        "type": "V2H"
+      },
       "page": "https://www.nichicon.co.jp/products/v2h/vcg/",
       "catalog": "https://www.nichicon.co.jp/wp-content/uploads/EVPS.pdf",
       "image": "https://www.nichicon.co.jp/products/v2h/assets_v2h/images/img-v2h-03.jpg"
     },
     {
       "key": "ess-u5",
-      "match": { "maker": "ニチコン", "name_includes": "ESS-U5" },
+      "match": {
+        "maker": "ニチコン",
+        "name_includes": "ESS-U5"
+      },
       "page": "https://www.nichicon.co.jp/products/ess/series_ess-u5.html",
       "catalog": "https://www.nichicon.co.jp/wp-content/uploads/ess-u5m1_u5l1.pdf",
       "image": "https://www.nichicon.co.jp/_assets/images/products/category_top/img-ess-02_01.jpg"
     },
     {
       "key": "tribrid-t5t6",
-      "match": { "maker": "ニチコン", "name_includes": "トライブリッド" },
+      "match": {
+        "maker": "ニチコン",
+        "name_includes": "トライブリッド"
+      },
       "page": "https://www.nichicon.co.jp/products/ess/t5t6system/",
       "catalog": "https://www.nichicon.co.jp/wp-content/uploads/tribrid_t5t6.pdf",
       "image": "https://www.nichicon.co.jp/_assets/images/products/category_top/img-ess-01_01.jpg"
     },
     {
       "key": "epcube",
-      "match": { "maker": "カナディアンソーラー" },
+      "match": {
+        "maker": "カナディアンソーラー"
+      },
       "page": "https://csisolar.co.jp/products/ep-cube/",
       "catalog": "https://csisolar.co.jp/wp-content/themes/canadian_solar/pdf/%5BJET%5D%20EP%20Cube%20Catalog_JP2_20260302_v1.3",
       "image": "https://csisolar.co.jp/wp-content/uploads/2023/03/EP-JAPAN-3kinds-e1692868584720.png"
     },
     {
       "key": "luna2000-s1",
-      "match": { "maker": "ファーウェイ" },
+      "match": {
+        "maker": "ファーウェイ"
+      },
       "page": "https://solar.huawei.com/jp/products/LUNA2000-7-14-21-NHS1/",
       "catalog": "https://solar.huawei.com/jp/products/LUNA2000-7-14-21-NHS1/specs/",
       "image": "https://solar.huawei.com/admin/asset/v1/pro/view/148954f5f2c242819a674343973eec5f.png"
