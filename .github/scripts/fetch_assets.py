@@ -1,7 +1,7 @@
 # メーカーのカタログ・製品画像・ロゴを取得して assets/ に保存するスクリプト
 # 取得に失敗したものは前回保存分を残す（リンク切れ対策）
 import datetime, hashlib, io, json, os, time, urllib.request
-from PIL import Image
+from PIL import Image, ImageDraw
 
 UA = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
       '(KHTML, like Gecko) Chrome/128.0 Safari/537.36')
@@ -24,7 +24,7 @@ def get(url):
         return r.read(), r.headers.get('Content-Type', '')
 
 
-def save_image(url, base, maxw=900):
+def save_image(url, base, maxw=900, crop=None, erase=None):
     data, ct = get(url)
     if url.lower().split('?')[0].endswith('.svg') or 'svg' in ct:
         if b'<svg' not in data[:4000].lower():
@@ -36,6 +36,14 @@ def save_image(url, base, maxw=900):
     im.load()
     if im.mode not in ('RGB', 'RGBA'):
         im = im.convert('RGBA')
+    w, h = im.size
+    # erase: 画像内の文字やアイコンを白で塗りつぶす範囲（幅・高さに対する割合）
+    for x0, y0, x1, y1 in (erase or []):
+        ImageDraw.Draw(im).rectangle([x0 * w, y0 * h, x1 * w, y1 * h], fill='white')
+    # crop: 製品部分だけを切り出す範囲（幅・高さに対する割合）
+    if crop:
+        x0, y0, x1, y1 = crop
+        im = im.crop((int(x0 * w), int(y0 * h), int(x1 * w), int(y1 * h)))
     im.thumbnail((maxw, maxw))
     path = base + '.webp'
     im.save(path, 'WEBP', quality=86)
@@ -84,7 +92,8 @@ for s in src.get('series', []):
     errors = []
     if s.get('image'):
         try:
-            entry['image'] = save_image(s['image'], 'assets/images/' + key)
+            entry['image'] = save_image(s['image'], 'assets/images/' + key,
+                                        crop=s.get('image_crop'), erase=s.get('image_erase'))
         except Exception as e:
             errors.append(f'image: {e}')
     if s.get('catalog'):
@@ -105,11 +114,22 @@ def save_manifest():
 save_manifest()
 
 # Web魚拓（Internet Archive）にも保存して、メーカー側のリンク切れに備える
+# 時間がかかるため、1回の実行で試すのは最大8件。直近25日以内に保存済みのものは飛ばす
+def recent(d):
+    try:
+        return (datetime.date.fromisoformat(today) - datetime.date.fromisoformat(d)).days < 25
+    except Exception:
+        return False
+
+budget = 8
 for s in src.get('series', []):
     entry = man['series'][s['key']]
-    if s.get('catalog') and archive(s['catalog']):
-        entry['catalog_archive'] = 'https://web.archive.org/web/' + s['catalog']
-    if s.get('page') and archive(s['page']):
-        entry['page_archive'] = 'https://web.archive.org/web/' + s['page']
+    for field, url in (('catalog', s.get('catalog')), ('page', s.get('page'))):
+        if not url or recent(entry.get(field + '_archived_on', '')) or budget <= 0:
+            continue
+        budget -= 1
+        if archive(url):
+            entry[field + '_archive'] = 'https://web.archive.org/web/' + url
+            entry[field + '_archived_on'] = today
     save_manifest()
 print('完了')
