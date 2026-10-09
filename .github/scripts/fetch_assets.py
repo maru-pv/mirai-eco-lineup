@@ -14,7 +14,7 @@ src = json.load(open(SRC, encoding='utf-8'))
 man = json.load(open(MAN, encoding='utf-8')) if os.path.exists(MAN) else {}
 man.setdefault('logos', {})
 man.setdefault('series', {})
-today = datetime.datetime.utcnow().strftime('%Y-%m-%d')
+today = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d')
 
 
 def get(url):
@@ -54,12 +54,12 @@ def archive(url):
     try:
         req = urllib.request.Request('https://web.archive.org/save/' + url,
                                      headers={'User-Agent': UA})
-        urllib.request.urlopen(req, timeout=150).read(100)
-        time.sleep(6)
+        urllib.request.urlopen(req, timeout=45).read(100)
+        time.sleep(3)
         return True
     except Exception as e:
         print('  [archive失敗]', url, e)
-        time.sleep(6)
+        time.sleep(3)
         return False
 
 
@@ -92,13 +92,24 @@ for s in src.get('series', []):
             entry['catalog_local'] = save_pdf(s['catalog'], f'assets/catalogs/{key}.pdf')
         except Exception as e:
             errors.append(f'catalog: {e}')
-        if archive(s['catalog']):
-            entry['catalog_archive'] = 'https://web.archive.org/web/' + s['catalog']
-    if s.get('page') and archive(s['page']):
-        entry['page_archive'] = 'https://web.archive.org/web/' + s['page']
     entry['checked'] = today
     entry['errors'] = errors
     man['series'][key] = entry
     print('series', key, 'errors:', errors or 'なし')
 
-json.dump(man, open(MAN, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
+def save_manifest():
+    json.dump(man, open(MAN, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
+
+
+# まず取得できたファイルを保存（このあとのWeb魚拓が遅くても取得分は残る）
+save_manifest()
+
+# Web魚拓（Internet Archive）にも保存して、メーカー側のリンク切れに備える
+for s in src.get('series', []):
+    entry = man['series'][s['key']]
+    if s.get('catalog') and archive(s['catalog']):
+        entry['catalog_archive'] = 'https://web.archive.org/web/' + s['catalog']
+    if s.get('page') and archive(s['page']):
+        entry['page_archive'] = 'https://web.archive.org/web/' + s['page']
+    save_manifest()
+print('完了')
