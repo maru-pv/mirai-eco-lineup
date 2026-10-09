@@ -16,7 +16,8 @@
       },
       "page": "https://www.q-cells.jp/qreadylp/",
       "catalog": "https://www.q-cells.jp/wp-content/uploads/2025/08/Qready.pdf",
-      "image": "https://www.q-cells.jp/qreadylp/images/webp/system-estorage_v3.webp"
+      "image": "https://www.q-cells.jp/qreadylp/images/webp/system-estorage_v3.webp",
+      "image_note": "写真は代表機種"
     },
     {
       "key": "powerdepo-r",
@@ -25,7 +26,14 @@
       },
       "page": "https://sumitomoelectric.com/jp/products/powerdepo/r",
       "catalog": "https://sumitomoelectric.com/jp/sites/japan/files/2026-05/download_documents/PDR_CA_R1.pdf",
-      "image": "https://sumitomoelectric.com/jp/sites/japan/files/styles/crop_sei_cp_656x656/public/2026-05/products/variant_card/Overview%20list%20segment%20Image%201610%20POWER%20DEPO%20R.png"
+      "image": "https://sumitomoelectric.com/jp/sites/japan/files/styles/crop_sei_cp_656x656/public/2026-05/products/variant_card/Overview%20list%20segment%20Image%201610%20POWER%20DEPO%20R.png",
+      "image_crop": [
+        0.507,
+        0,
+        0.715,
+        1
+      ],
+      "image_trim": true
     },
     {
       "key": "spvm2",
@@ -38,13 +46,8 @@
       },
       "page": "https://cic-solar.jp/products/power-storage-system/",
       "catalog": "https://cic-solar.jp/catalog/spvm2_260518/top.html",
-      "image": "https://cic-solar.jp/wp-content/themes/ill/img/system/smart_pv_multi2.jpg",
-      "image_crop": [
-        0.02,
-        0.53,
-        0.98,
-        1
-      ]
+      "image_pending": "容量ごとの製品画像を確認中（シリーズの集合写真だとどれか分からないため非表示）",
+      "image_candidate": "https://cic-solar.jp/wp-content/themes/ill/img/system/smart_pv_multi2.jpg"
     },
     {
       "key": "spvm",
@@ -53,21 +56,8 @@
       },
       "page": "https://cic-solar.jp/products/power-storage-system/",
       "catalog": "https://cic-solar.jp/catalog/spvm_260518/top.html",
-      "image": "https://cic-solar.jp/wp-content/themes/ill/img/system/smart_pv_multi.jpg",
-      "image_erase": [
-        [
-          0,
-          0,
-          0.345,
-          0.53
-        ]
-      ],
-      "image_crop": [
-        0.09,
-        0.4,
-        0.91,
-        1
-      ]
+      "image_pending": "容量ごとの製品画像を確認中（シリーズの集合写真だとどれか分からないため非表示）",
+      "image_candidate": "https://cic-solar.jp/wp-content/themes/ill/img/system/smart_pv_multi.jpg"
     },
     {
       "key": "evps",
@@ -87,7 +77,8 @@
       },
       "page": "https://www.nichicon.co.jp/products/ess/series_ess-u5.html",
       "catalog": "https://www.nichicon.co.jp/wp-content/uploads/ess-u5m1_u5l1.pdf",
-      "image": "https://www.nichicon.co.jp/_assets/images/products/category_top/img-ess-02_01.jpg"
+      "image": "https://www.nichicon.co.jp/_assets/images/products/category_top/img-ess-02_01.jpg",
+      "image_note": "写真は代表機種"
     },
     {
       "key": "tribrid-t5t6",
@@ -97,16 +88,77 @@
       },
       "page": "https://www.nichicon.co.jp/products/ess/t5t6system/",
       "catalog": "https://www.nichicon.co.jp/wp-content/uploads/tribrid_t5t6.pdf",
-      "image": "https://www.nichicon.co.jp/_assets/images/products/category_top/img-ess-01_01.jpg"
+      "image_pending": "容量ごとの製品画像を確認中（シリーズの集合写真だとどれか分からないため非表示）",
+      "image_candidate": "https://www.nichicon.co.jp/_assets/images/products/category_top/img-ess-01_01.jpg"
     },
     {
-      "key": "epcube",
+      "key": "epcube-66",
       "match": {
-        "maker": "カナディアンソーラー"
+        "maker": "カナディアンソーラー",
+        "capacity": [
+          "6.6kWh"
+        ]
       },
       "page": "https://csisolar.co.jp/products/ep-cube/",
       "catalog": "https://csisolar.co.jp/wp-content/themes/canadian_solar/pdf/%5BJET%5D%20EP%20Cube%20Catalog_JP2_20260302_v1.3",
-      "image": "https://csisolar.co.jp/wp-content/uploads/2023/03/EP-JAPAN-3kinds-e1692868584720.png"
+      "image": "https://csisolar.co.jp/wp-content/uploads/2023/03/EP-JAPAN-3kinds-e1692868584720.png",
+      "image_crop": [
+        0,
+        0,
+        0.333,
+        1
+      ],
+      "image_trim": true
+    },
+    {
+      "key": "epcube-99",
+      "match": {
+        "maker": "カナディアンソーラー",
+        "capacity": [
+          "9.9kWh"
+        ]
+      },
+      "page": "https://csisolar.co.jp/products/ep-cube/",
+      "catalog": "https://csisolar.co.jp/wp-content/themes/canadian_solar/pdf/%5BJET%5D%20EP%20Cube%20Catalog_JP2_20260302_v1.3",
+      "image": "https://csisolar.co.jp/wp-content/uploads/2023/03/EP-JAPAN-3kinds-e1692868584720.png",
+      "image_crop": [
+        0.333,
+        0,
+        0.67,
+        1
+      ],
+      "image_trim": true
+    },
+    {
+      "key": "epcube-133",
+      "match": {
+        "maker": "カナディアンソーラー",
+        "capacity": [
+          "13.3kWh"
+        ]
+      },
+      "page": "https://csisolar.co.jp/products/ep-cube/",
+      "catalog": "https://csisolar.co.jp/wp-content/themes/canadian_solar/pdf/%5BJET%5D%20EP%20Cube%20Catalog_JP2_20260302_v1.3",
+      "image": "https://csisolar.co.jp/wp-content/uploads/2023/03/EP-JAPAN-3kinds-e1692868584720.png",
+      "image_crop": [
+        0.67,
+        0,
+        1,
+        1
+      ],
+      "image_trim": true
+    },
+    {
+      "key": "luna2000-s1-14",
+      "match": {
+        "maker": "ファーウェイ",
+        "capacity": [
+          "14kWh"
+        ]
+      },
+      "page": "https://solar.huawei.com/jp/products/LUNA2000-7-14-21-NHS1/",
+      "catalog": "https://solar.huawei.com/jp/products/LUNA2000-7-14-21-NHS1/specs/",
+      "image": "https://solar.huawei.com/admin/asset/v1/pro/view/148954f5f2c242819a674343973eec5f.png"
     },
     {
       "key": "luna2000-s1",
@@ -115,7 +167,8 @@
       },
       "page": "https://solar.huawei.com/jp/products/LUNA2000-7-14-21-NHS1/",
       "catalog": "https://solar.huawei.com/jp/products/LUNA2000-7-14-21-NHS1/specs/",
-      "image": "https://solar.huawei.com/admin/asset/v1/pro/view/148954f5f2c242819a674343973eec5f.png"
+      "image": "https://solar.huawei.com/admin/asset/v1/pro/view/148954f5f2c242819a674343973eec5f.png",
+      "image_note": "写真は14kWh構成"
     }
   ]
 }
