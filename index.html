@@ -142,7 +142,7 @@
     content: ''; position: absolute; right: -5px; top: 3px; width: 3px; height: 4px;
     background: var(--ink); border-radius: 0 1px 1px 0;
   }
-  .battery i { display: block; height: 100%; background: var(--leaf); border-radius: 1px; }
+  .battery i { display: block; width: 100%; height: 100%; background: var(--leaf); border-radius: 1px; }
   .gauge.v2h .gauge-cap { font-size: 0.95rem; font-family: var(--txt); font-weight: 900; color: var(--leaf); }
 
   .info { min-width: 0; }
@@ -163,13 +163,13 @@
   .price-tax { font-size: 0.72rem; color: var(--ink-soft); margin-top: 3px; }
 
   .cmp {
-    width: 34px; height: 34px; border-radius: 8px; cursor: pointer;
-    border: 1px solid var(--line); background: var(--paper);
-    font-size: 1.1rem; font-weight: 700; color: var(--brand);
-    display: grid; place-items: center;
+    height: 34px; padding: 0 12px; border-radius: 999px; cursor: pointer;
+    border: 1.5px solid var(--brand); background: var(--paper);
+    font-size: 0.78rem; font-weight: 700; color: var(--brand);
+    display: inline-flex; align-items: center; justify-content: center; min-width: 108px; white-space: nowrap;
   }
-  .cmp:hover { border-color: var(--brand); }
-  .cmp[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: #fff; }
+  .cmp:hover { background: #EAF1FC; }
+  .cmp[aria-pressed="true"] { background: var(--brand); color: #fff; }
 
   .no-result { text-align: center; padding: 48px 16px; color: var(--ink-soft); }
   .no-result button { margin-top: 10px; }
@@ -252,8 +252,7 @@
     .period { width: 100%; }
     .container { padding: 16px 12px 40px; }
     .row { grid-template-columns: 64px 1fr auto; gap: 10px; padding: 12px 6px; }
-    .cmp { grid-column: 3; grid-row: 2; justify-self: end; width: auto; height: 30px; padding: 0 10px; font-size: 0.75rem; display: inline-flex; align-items: center; white-space: nowrap; }
-    .cmp::after { content: attr(data-label); margin-left: 4px; }
+    .cmp { grid-column: 3; grid-row: 2; justify-self: end; height: 30px; padding: 0 10px; font-size: 0.75rem; min-width: 100px; }
     .price-main { font-size: 1.45rem; }
     .battery { width: 54px; }
     .cb-inner { padding: 10px 12px 12px; }
@@ -481,11 +480,10 @@
     const { ex, inTax } = getPrice(p);
     const cap = parseFloat(p.capacity);
     const hasCap = !isNaN(cap);
-    const pct = hasCap ? Math.max(8, Math.round(cap / maxCap * 100)) : 0;
 
     const gauge = hasCap
       ? `<div class="gauge"><div class="gauge-cap">${esc(String(p.capacity).replace(/kWh$/i, ''))}<small>kWh</small></div>
-           <div class="battery" aria-hidden="true"><i style="width:${pct}%"></i></div></div>`
+           <div class="battery" aria-hidden="true"><i></i></div></div>`
       : `<div class="gauge v2h"><div class="gauge-cap">${p.type === 'V2H' ? 'V2H' : esc(p.capacity)}</div></div>`;
 
     const tags = [];
@@ -498,9 +496,9 @@
       ? `<a class="catalog" href="${esc(p.url)}" target="_blank" rel="noopener">カタログを見る</a>` : '';
     const taxLine = f.show_tax_price !== false ? `<div class="price-tax">税込 ${yen(inTax)}円</div>` : '';
     const cmpBtn = f.compare_mode !== false
-      ? `<button type="button" class="cmp" aria-pressed="${inCompare}" data-label="${inCompare ? '比較中' : '比較'}"
+      ? `<button type="button" class="cmp" aria-pressed="${inCompare}"
            aria-label="${esc(p.maker + ' ' + p.name + ' ' + p.capacity)}を比較リストに${inCompare ? 'から外す' : '追加'}"
-           onclick="toggleCompare(${p._id})">${inCompare ? '✓' : '＋'}</button>` : '';
+           onclick="toggleCompare(${p._id})">${inCompare ? '✓ 比較中' : '＋ 比較に追加'}</button>` : '';
 
     return `
       <div class="row ${inCompare ? 'in-compare' : ''}" id="row-${p._id}">
@@ -560,7 +558,7 @@
       const on = compareList.some(c => c._id === id);
       row.classList.toggle('in-compare', on);
       const btn = row.querySelector('.cmp');
-      if (btn) { btn.setAttribute('aria-pressed', on); btn.textContent = on ? '✓' : '＋'; btn.dataset.label = on ? '比較中' : '比較'; }
+      if (btn) { btn.setAttribute('aria-pressed', on); btn.textContent = on ? '✓ 比較中' : '＋ 比較に追加'; }
     }
   }
 
