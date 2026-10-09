@@ -146,6 +146,8 @@
     mix-blend-mode: multiply; transition: transform .45s var(--ease);
   }
   .card:hover .product { transform: scale(1.04); }
+  .product-fig { margin: 0; display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .product-fig figcaption { font-size: 0.62rem; color: var(--faint); margin-top: 2px; white-space: nowrap; }
   .links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
   .tag { font-size: 0.68rem; font-weight: 500; color: var(--sub); background: #fff; padding: 2px 9px; border-radius: 999px; }
   .tag.sochiku { color: var(--sun); background: var(--sun-tint); font-weight: 700; }
@@ -521,7 +523,8 @@
     const catalogOfficial = (se && se.catalog) || p.url || '';
     return {
       logo: logo || '',
-      image: saved.image || '',
+      image: (se && se.image) ? (saved.image || '') : '',
+      imageNote: (se && se.image_note) || '',
       catalog: saved.catalog_local || catalogOfficial,
       archive: saved.catalog_local ? '' : (saved.catalog_archive || ''),
       page: (se && se.page) || ''
@@ -552,8 +555,10 @@
     const logo = as.logo
       ? `<img class="maker-logo" src="${esc(as.logo)}" alt="${esc(p.maker)}" loading="lazy">`
       : `<span class="card-maker" style="margin:0">${esc(p.maker)}</span>`;
-    const img = as.image
-      ? `<img class="product" src="${esc(as.image)}" alt="${esc(p.maker + ' ' + p.name)}の外観" loading="lazy">` : '';
+    const imgTag = as.image
+      ? `<img class="product" src="${esc(as.image)}" alt="${esc(p.maker + ' ' + p.name + ' ' + p.capacity)}の外観" loading="lazy">` : '';
+    const img = imgTag && as.imageNote
+      ? `<figure class="product-fig">${imgTag}<figcaption>${esc(as.imageNote)}</figcaption></figure>` : imgTag;
     const taxLine = f.show_tax_price !== false ? `<div class="price-tax">税込 ${yen(inTax)}円</div>` : '';
     const cmpBtn = f.compare_mode !== false
       ? `<button type="button" class="cmp" aria-pressed="${inCompare}"
