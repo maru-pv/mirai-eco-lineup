@@ -13,7 +13,8 @@
     "長州産業": {
       "file": "assets/logos/logo-3e5e0a0a.svg",
       "checked": "2026-10-09",
-      "source": "https://cic-solar.jp/wp-content/themes/ill/img/logo.svg"
+      "source": "https://cic-solar.jp/wp-content/themes/ill/img/logo.svg",
+      "error": "2026-10-09: <urlopen error timed out>"
     },
     "ニチコン": {
       "file": "assets/logos/logo-0aeb2d6e.svg",
@@ -54,7 +55,7 @@
       "image": "assets/images/spvm2.webp",
       "checked": "2026-10-09",
       "errors": [
-        "catalog: PDFではありません (text/html)"
+        "catalog: <urlopen error timed out>"
       ]
     },
     "spvm": {
@@ -63,7 +64,7 @@
       "image": "assets/images/spvm.webp",
       "checked": "2026-10-09",
       "errors": [
-        "catalog: PDFではありません (text/html)"
+        "catalog: <urlopen error timed out>"
       ],
       "catalog_archive": "https://web.archive.org/web/https://cic-solar.jp/catalog/spvm_260518/top.html"
     },
@@ -104,6 +105,39 @@
       "page": "https://solar.huawei.com/jp/products/LUNA2000-7-14-21-NHS1/",
       "catalog_official": "https://solar.huawei.com/jp/products/LUNA2000-7-14-21-NHS1/specs/",
       "image": "assets/images/luna2000-s1.webp",
+      "checked": "2026-10-09",
+      "errors": [
+        "catalog: PDFではありません (text/html; charset=utf-8)"
+      ]
+    },
+    "epcube-66": {
+      "page": "https://csisolar.co.jp/products/ep-cube/",
+      "catalog_official": "https://csisolar.co.jp/wp-content/themes/canadian_solar/pdf/%5BJET%5D%20EP%20Cube%20Catalog_JP2_20260302_v1.3",
+      "image": "assets/images/epcube-66.webp",
+      "catalog_local": "assets/catalogs/epcube-66.pdf",
+      "checked": "2026-10-09",
+      "errors": []
+    },
+    "epcube-99": {
+      "page": "https://csisolar.co.jp/products/ep-cube/",
+      "catalog_official": "https://csisolar.co.jp/wp-content/themes/canadian_solar/pdf/%5BJET%5D%20EP%20Cube%20Catalog_JP2_20260302_v1.3",
+      "image": "assets/images/epcube-99.webp",
+      "catalog_local": "assets/catalogs/epcube-99.pdf",
+      "checked": "2026-10-09",
+      "errors": []
+    },
+    "epcube-133": {
+      "page": "https://csisolar.co.jp/products/ep-cube/",
+      "catalog_official": "https://csisolar.co.jp/wp-content/themes/canadian_solar/pdf/%5BJET%5D%20EP%20Cube%20Catalog_JP2_20260302_v1.3",
+      "image": "assets/images/epcube-133.webp",
+      "catalog_local": "assets/catalogs/epcube-133.pdf",
+      "checked": "2026-10-09",
+      "errors": []
+    },
+    "luna2000-s1-14": {
+      "page": "https://solar.huawei.com/jp/products/LUNA2000-7-14-21-NHS1/",
+      "catalog_official": "https://solar.huawei.com/jp/products/LUNA2000-7-14-21-NHS1/specs/",
+      "image": "assets/images/luna2000-s1-14.webp",
       "checked": "2026-10-09",
       "errors": [
         "catalog: PDFではありません (text/html; charset=utf-8)"
