@@ -511,6 +511,7 @@
       if (m.maker && m.maker !== p.maker) return false;
       if (m.type && m.type !== p.type) return false;
       if (m.name_includes && !String(p.name).includes(m.name_includes)) return false;
+      if (m.name_any && !m.name_any.some(n => String(p.name).includes(n))) return false;
       if (m.capacity && !m.capacity.includes(p.capacity)) return false;
       return true;
     }) || null;
